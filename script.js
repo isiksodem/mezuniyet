@@ -24,7 +24,10 @@ function normalizePhone(value) {
 
 function createTicketCode(studentNo) {
   const datePart = new Date().toISOString().slice(2, 10).replace(/-/g, "");
-  const cleaned = studentNo.replace(/\D/g, "").slice(-4) || "0000";
+  const cleaned = studentNo
+    .toUpperCase()
+    .replace(/[^A-Z0-9]/g, "")
+    .slice(-6) || "GENEL";
   return `SDK-${datePart}-${cleaned}`;
 }
 
